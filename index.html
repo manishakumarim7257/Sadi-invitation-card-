@@ -9,8 +9,17 @@
         body, html { margin: 0; padding: 0; width: 100%; height: 100%; font-family: 'Georgia', serif; background-color: #fdf5e6; -webkit-font-smoothing: antialiased; }
         
         /* FIRST PAGE: COVER SHEET (Values Reduced to Prevent Overflow) */
-        #cover-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffcc00, #ffa500); display: flex; justify-content: center; align-items: center; z-index: 1000; }
-        .envelope-container { width: 100%; max-width: 500px; height: 95%; max-height: 575px; background-color: #fff9e6; border: 10px double #800000; box-shadow: 0px 8px 25px rgba(128,0,0,0.35); position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 8px; box-sizing: border-box; overflow: hidden; }
+        #cover-page { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #ffcc00, #ffa500); display: flex; justify-content: center; align-items: center; z-index: 1000; overflow: hidden; }
+        
+        /* Floating Flowers Animation */
+        .flower { position: absolute; font-size: 40px; opacity: 0.6; animation: float-flower 6s infinite ease-in-out; }
+        @keyframes float-flower { 
+            0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+            50% { opacity: 0.7; }
+            100% { transform: translateY(-100vh) rotate(360deg); opacity: 0; }
+        }
+        
+        .envelope-container { width: 100%; max-width: 500px; height: 95%; max-height: 575px; background-color: #fff9e6; border: 10px double #800000; box-shadow: 0px 8px 25px rgba(128,0,0,0.35), 0 0 30px rgba(255,200,0,0.4); position: relative; display: flex; flex-direction: column; justify-content: space-between; padding: 10px 8px; box-sizing: border-box; overflow: hidden; }
         .envelope-container::before, .envelope-container::after { content: "❖ ════ ❃ ════ ❖"; font-size: 13px; color: #800000; position: absolute; width: 100%; left: 0; }
         .envelope-container::before { top: 4px; } .envelope-container::after { bottom: 4px; }
         
@@ -19,7 +28,7 @@
         
         
         .shubh-vivah-section { text-align: center; margin: 2px 0; }
-        .shubh-vivah-tag { font-size: 28px; font-weight: bold; color: #b30000; margin: 2px 0; letter-spacing: 1px; }
+        .shubh-vivah-tag { font-size: 28px; font-weight: bold; color: #b30000; margin: 2px 0; letter-spacing: 1px; text-shadow: 0 0 10px rgba(179, 0, 0, 0.5); }
         
         /* Kalash Image Box Size Reduced */
         .kalash-box { width: 45px; height: 45px; margin: 0 auto 2px auto; display: flex; justify-content: center; align-items: center; animation: float 3s ease-in-out infinite; border-radius: 50%; overflow: hidden; }
@@ -28,7 +37,7 @@
         
         /* Spacing and gaps minimized */
         .cover-middle { display: flex; flex-direction: column; align-items: center; gap: 4px; margin: 5px 0; }
-        .left-heart-box { border: 2px dashed #b30000; padding: 6px 12px; border-radius: 8px; background: #fff0b3; text-align: center; width: 75%; max-width: 180px; box-shadow: 0 3px 6px rgba(0,0,0,0.05); }
+        .left-heart-box { border: 2px dashed #b30000; padding: 6px 12px; border-radius: 8px; background: linear-gradient(135deg, #fff0b3, #ffe680); text-align: center; width: 75%; max-width: 180px; box-shadow: 0 3px 6px rgba(0,0,0,0.05), 0 0 15px rgba(255,200,0,0.3); }
         .heart-icon { font-size: 22px; color: #b30000; margin: 1px 0; animation: beat 1.2s infinite; }
         @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
         .names-inside { font-weight: bold; font-size: 16px; }
@@ -36,60 +45,92 @@
         .manyavar-text { font-size: 18px; font-weight: bold; text-align: left; margin-bottom: 2px; color: #b30000; }
         .entry-line { border-bottom: 2px dashed #800000; margin-bottom: 8px; height: 4px; width: 100%; }
         .btn-container { text-align: center; margin: 3px 0; }
-        .invite-btn { background: linear-gradient(135deg, #b30000, #800000); color: #fff; border: 2px solid #ffcc00; padding: 10px 30px; font-size: 15px; font-weight: bold; border-radius: 25px; cursor: pointer; transition: all 0.3s ease; }
-        .invite-btn:hover { transform: scale(1.03); }
+        .invite-btn { background: linear-gradient(135deg, #b30000, #800000); color: #fff; border: 2px solid #ffcc00; padding: 10px 30px; font-size: 15px; font-weight: bold; border-radius: 25px; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 15px rgba(179, 0, 0, 0.4); }
+        .invite-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(255, 200, 0, 0.8); }
         .cover-footer { display: flex; justify-content: space-between; align-items: center; border-top: 2px dashed #800000; padding-top: 6px; font-size: 11px; margin-top: 2px; }
         .vinit-box { text-align: left; line-height: 1.3; font-size: 11px; }
         .choohan-box { font-size: 13px; font-weight: bold; color: #b30000; }
 
         /* WELCOME PAGE STYLING */
-        #welcome-page { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #800000, #b30000); z-index: 2000; justify-content: center; align-items: center; flex-direction: column; }
+        #welcome-page { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, #800000, #b30000); z-index: 2000; justify-content: center; align-items: center; flex-direction: column; overflow: hidden; }
         .welcome-container { text-align: center; color: #fff; }
-        .welcome-container h1 { font-size: 48px; margin: 20px 0; animation: fadeInScale 1s ease-in-out; }
+        .welcome-container h1 { font-size: 48px; margin: 20px 0; animation: fadeInScale 1s ease-in-out; text-shadow: 0 0 20px rgba(255, 200, 0, 0.5); }
         .welcome-container p { font-size: 24px; margin: 15px 0; animation: fadeInScale 1.2s ease-in-out; }
         .welcome-animation { font-size: 60px; animation: bounce 1s infinite; }
         @keyframes fadeInScale { 0% { opacity: 0; transform: scale(0.8); } 100% { opacity: 1; transform: scale(1); } }
         @keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
+        
+        /* Fireworks */
+        .firework { position: fixed; pointer-events: none; }
+        .firework-particle { position: absolute; width: 10px; height: 10px; border-radius: 50%; }
 
         /* SECOND PAGE: FIXED FOR DESKTOP CENTRE ALIGNMENT */
-        #main-card { display: none; justify-content: center; align-items: center; min-height: 100vh; padding: 25px 10px; box-sizing: border-box; }
-        .card-container { width: 100%; max-width: 500px; background-color: #fffdf5; border: 16px solid #800000; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.2); border-radius: 8px; padding: 20px; box-sizing: border-box; }
+        #main-card { display: none; justify-content: center; align-items: center; min-height: 100vh; padding: 25px 10px; box-sizing: border-box; background: linear-gradient(135deg, #fff5e6, #fffaf5); }
+        .card-container { width: 100%; max-width: 500px; background-color: #fffdf5; border: 16px solid #800000; position: relative; box-shadow: 0 8px 40px rgba(0,0,0,0.2), 0 0 40px rgba(255,200,0,0.3); border-radius: 8px; padding: 20px; box-sizing: border-box; }
         .card-container::before, .card-container::after { content: "✿ ═════ ❃ ═════ ✿"; font-size: 14px; color: #b30000; position: absolute; width: 100%; left: 0; text-align: center; }
         .card-container::before { top: 6px; } .card-container::after { bottom: 6px; }
-        .header-title { font-size: 18px; font-weight: bold; margin-bottom: 3px; }
-        .title-box { background: linear-gradient(135deg, #800000, #b30000); color: #fff; display: inline-block; padding: 6px 25px; border-radius: 20px; font-size: 16px; font-weight: bold; margin-bottom: 20px; }
+        .header-title { font-size: 18px; font-weight: bold; margin-bottom: 3px; text-shadow: 0 0 10px rgba(179, 0, 0, 0.3); }
+        .title-box { background: linear-gradient(135deg, #800000, #b30000); color: #fff; display: inline-block; padding: 6px 25px; border-radius: 20px; font-size: 16px; font-weight: bold; margin-bottom: 20px; box-shadow: 0 0 15px rgba(179, 0, 0, 0.4); }
+        
+        .countdown { background: linear-gradient(135deg, #b30000, #800000); color: #fff; padding: 15px; border-radius: 10px; margin-bottom: 20px; text-align: center; box-shadow: 0 0 15px rgba(179, 0, 0, 0.3); }
+        .countdown-title { font-size: 14px; margin-bottom: 8px; }
+        .countdown-display { display: flex; justify-content: space-around; gap: 10px; }
+        .countdown-item { background: rgba(255,255,255,0.2); padding: 8px 12px; border-radius: 6px; font-weight: bold; }
+        
         .events-grid { display: flex; flex-direction: column; gap: 12px; align-items: center; margin-bottom: 20px; }
-        .event-box { border: 2px dotted #b30000; padding: 12px 15px; border-radius: 10px; width: 90%; background-color: #fff9e6; box-sizing: border-box; }
+        .event-box { border: 2px dotted #b30000; padding: 12px 15px; border-radius: 10px; width: 90%; background: linear-gradient(135deg, #fff9e6, #fffef0); box-sizing: border-box; box-shadow: 0 0 10px rgba(255,200,0,0.2); }
         .event-title { font-weight: bold; font-size: 17px; margin-bottom: 5px; color: #b30000; }
-        .event-date { background-color: #800000; color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 14px; font-weight: bold; display: inline-block; }
+        .event-date { background: linear-gradient(135deg, #800000, #b30000); color: #fff; padding: 4px 10px; border-radius: 4px; font-size: 14px; font-weight: bold; display: inline-block; }
         .barat-section { margin: 15px 0; }
-        .barat-title { font-weight: bold; background-color: #b30000; color: #fff; display: inline-block; padding: 4px 15px; border-radius: 4px; font-size: 14px; }
-        .shayari { font-style: italic; font-size: 14px; margin: 15px auto; max-width: 95%; border-left: 3px solid #b30000; border-right: 3px solid #b30000; padding: 8px 12px; background-color: #fff4cc; border-radius: 4px; }
-        .venue { font-weight: bold; font-size: 15px; margin-bottom: 20px; color: #b30000; background-color: #fff0b3; display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px dashed #800000; }
+        .barat-title { font-weight: bold; background: linear-gradient(135deg, #b30000, #800000); color: #fff; display: inline-block; padding: 4px 15px; border-radius: 4px; font-size: 14px; box-shadow: 0 0 10px rgba(179, 0, 0, 0.3); }
+        .shayari { font-style: italic; font-size: 14px; margin: 15px auto; max-width: 95%; border-left: 3px solid #b30000; border-right: 3px solid #b30000; padding: 8px 12px; background: linear-gradient(135deg, #fff4cc, #fffaf0); border-radius: 4px; box-shadow: 0 0 10px rgba(255,200,0,0.2); }
+        .venue { font-weight: bold; font-size: 15px; margin-bottom: 20px; color: #b30000; background: linear-gradient(135deg, #fff0b3, #ffe680); display: inline-block; padding: 6px 15px; border-radius: 4px; border: 1px dashed #800000; box-shadow: 0 0 10px rgba(255,200,0,0.2); }
         .divider { font-size: 16px; margin: 20px 0; color: #b30000; }
         .invitation-text { font-size: 16px; margin-bottom: 20px; line-height: 1.4; }
         .couple-section { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-bottom: 20px; }
-        .couple-box { border: 4px double #800000; border-radius: 12px; width: 90%; display: flex; flex-direction: column; justify-content: center; align-items: center; background-color: #fff; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 15px; box-sizing: border-box; }
-        .couple-name { font-size: 18px; font-weight: bold; color: #b30000; margin-bottom: 4px; border-bottom: 1px solid #800000; padding-bottom: 2px; }
+        .couple-box { border: 4px double #800000; border-radius: 12px; width: 90%; display: flex; flex-direction: column; justify-content: center; align-items: center; background: linear-gradient(135deg, #fff, #fff9f5); box-shadow: 0 4px 12px rgba(0,0,0,0.1), 0 0 20px rgba(255,200,0,0.2); padding: 15px; box-sizing: border-box; }
+        .couple-name { font-size: 18px; font-weight: bold; color: #b30000; margin-bottom: 4px; border-bottom: 1px solid #800000; padding-bottom: 2px; text-shadow: 0 0 8px rgba(179, 0, 0, 0.2); }
         .parents-info { font-size: 13px; line-height: 1.4; color: #590000; }
         
         /* Couple Image: Cycle (Circular) Shape Added */
-        .couple-image-box { width: 110px; height: 110px; display: flex; justify-content: center; align-items: center; margin: 5px 0; border-radius: 50%; overflow: hidden; border: 3px double #800000; background-color: #fff9e6; }
+        .couple-image-box { width: 110px; height: 110px; display: flex; justify-content: center; align-items: center; margin: 5px 0; border-radius: 50%; overflow: hidden; border: 3px double #800000; background: linear-gradient(135deg, #fff9e6, #fffef0); box-shadow: 0 0 20px rgba(255,200,0,0.3); }
         .couple-image-box img { width: 100%; height: 100%; object-fit: contain; }
         
+        /* Photo Gallery */
+        .gallery-section { margin: 20px 0; }
+        .gallery-title { font-weight: bold; background: linear-gradient(135deg, #b30000, #800000); color: #fff; display: inline-block; padding: 4px 15px; border-radius: 4px; font-size: 14px; margin-bottom: 10px; box-shadow: 0 0 10px rgba(179, 0, 0, 0.3); }
+        .gallery-container { display: flex; gap: 10px; overflow-x: auto; padding: 10px 0; }
+        .gallery-item { min-width: 100px; height: 100px; border-radius: 10px; background: linear-gradient(135deg, #800000, #b30000); display: flex; justify-content: center; align-items: center; color: #fff; font-size: 40px; box-shadow: 0 0 15px rgba(179, 0, 0, 0.3); }
+        
+        /* Action Buttons */
+        .action-buttons { display: flex; gap: 10px; justify-content: center; margin: 15px 0; flex-wrap: wrap; }
+        .action-btn { background: linear-gradient(135deg, #248a3d, #0f9d58); color: #fff; border: 1px solid #ffcc00; padding: 10px 15px; font-size: 13px; font-weight: bold; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-flex; align-items: center; gap: 5px; box-shadow: 0 0 10px rgba(36, 138, 61, 0.3); }
+        .action-btn:hover { transform: scale(1.05); box-shadow: 0 0 20px rgba(36, 138, 61, 0.5); }
+        .rsvp-btn { background: linear-gradient(135deg, #ff6b6b, #ee5a6f); }
+        .rsvp-btn:hover { box-shadow: 0 0 20px rgba(255, 107, 107, 0.5); }
+        
         .footer-sections { display: flex; flex-direction: column; gap: 15px; align-items: center; margin-top: 20px; border-top: 2px dashed #800000; padding-top: 20px; }
-        .footer-box { width: 95%; background-color: #fffaf0; padding: 10px; border-radius: 6px; box-sizing: border-box; }
-        .footer-title { background-color: #800000; color: #fff; display: inline-block; padding: 3px 10px; border-radius: 3px; font-weight: bold; margin-bottom: 8px; font-size: 13px; }
+        .footer-box { width: 95%; background: linear-gradient(135deg, #fffaf0, #fff); padding: 10px; border-radius: 6px; box-sizing: border-box; box-shadow: 0 0 10px rgba(255,200,0,0.15); }
+        .footer-title { background: linear-gradient(135deg, #800000, #b30000); color: #fff; display: inline-block; padding: 3px 10px; border-radius: 3px; font-weight: bold; margin-bottom: 8px; font-size: 13px; }
         .footer-names { line-height: 1.4; font-size: 13px; }
         
-                /* Map Location Button Styling */
+        /* Map Location Button Styling */
         .map-btn-container { margin: 15px auto 5px auto; text-align: center; }
-        .map-btn { background: linear-gradient(135deg, #248a3d, #0f9d58); color: #fff; border: 1px solid #ffcc00; padding: 10px 22px; font-size: 14px; font-weight: bold; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; }
-        .map-btn:hover { transform: scale(1.03); background: linear-gradient(135deg, #1e7031, #0c7f46); }
+        .map-btn { background: linear-gradient(135deg, #248a3d, #0f9d58); color: #fff; border: 1px solid #ffcc00; padding: 10px 22px; font-size: 14px; font-weight: bold; border-radius: 20px; cursor: pointer; transition: all 0.3s ease; text-decoration: none; display: inline-block; box-shadow: 0 0 15px rgba(36, 138, 61, 0.3); }
+        .map-btn:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(36, 138, 61, 0.5); }
+        
+        /* Music Toggle */
+        .music-toggle { position: fixed; bottom: 20px; right: 20px; z-index: 100; background: linear-gradient(135deg, #b30000, #800000); color: #fff; border: 2px solid #ffcc00; width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; justify-content: center; align-items: center; font-size: 24px; box-shadow: 0 0 15px rgba(179, 0, 0, 0.4); transition: all 0.3s ease; }
+        .music-toggle:hover { transform: scale(1.1); box-shadow: 0 0 25px rgba(255, 200, 0, 0.6); }
             
         </style>
 </head>
 <body>
+    <!-- Audio Element for Background Music -->
+    <audio id="background-music" loop volume="0.3">
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+    </audio>
+
     <!-- FIRST INTERACTIVE PAGE (SPLASH COVER) -->
 <div id="cover-page">
         <div class="envelope-container">
@@ -163,6 +204,29 @@
         <div class="header-title">❀ ॥ श्री गणेशाय नमः ॥ ❀</div>
         <div class="title-box">वैवाहिक कार्यक्रम</div>
 
+        <!-- Countdown Timer -->
+        <div class="countdown">
+            <div class="countdown-title">शादी तक बाकी समय</div>
+            <div class="countdown-display">
+                <div class="countdown-item">
+                    <div id="days">0</div>
+                    <div style="font-size: 11px;">दिन</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="hours">0</div>
+                    <div style="font-size: 11px;">घंटे</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="minutes">0</div>
+                    <div style="font-size: 11px;">मिनट</div>
+                </div>
+                <div class="countdown-item">
+                    <div id="seconds">0</div>
+                    <div style="font-size: 11px;">सेकंड</div>
+                </div>
+            </div>
+        </div>
+
         <div class="events-grid">
             <div class="event-box">
                 <div class="event-title">मण्डप / हल्दी</div>
@@ -231,7 +295,30 @@
             की मधुर वेला पर पधार कर वर-वधु को अपने स्नेहिल आशीर्वाद प्रदान कर हमें अनुगृहीत करेंगे।
         </div>
 
+        <!-- Photo Gallery -->
+        <div class="gallery-section">
+            <div class="gallery-title">📸 शादी की तस्वीरें</div>
+            <div class="gallery-container">
+                <div class="gallery-item">💍</div>
+                <div class="gallery-item">💒</div>
+                <div class="gallery-item">💐</div>
+                <div class="gallery-item">💑</div>
+                <div class="gallery-item">🎊</div>
+                <div class="gallery-item">🎉</div>
+            </div>
+        </div>
+
         <div class="divider">⚜ ═════ 🌻 ═════ ⚜</div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+            <a href="https://wa.me/?text=मेरे%20शादी%20के%20आमंत्रण%20में%20शामिल%20हो%20जाइए%20-%205%20जनवरी%202026" target="_blank" class="action-btn">
+                💬 WhatsApp शेयर करें
+            </a>
+            <button class="action-btn rsvp-btn" onclick="showRSVP()">
+                ✅ RSVP दें
+            </button>
+        </div>
 
         <div class="footer-sections">
             <div class="footer-box">
@@ -252,7 +339,109 @@
     </div>
 </div>
 
+<!-- Music Toggle Button -->
+<button class="music-toggle" id="music-toggle" onclick="toggleMusic()" title="संगीत चलाएं">🎵</button>
+
 <script>
+    // Floating Flowers
+    function createFloatingFlower() {
+        const flowers = ['🌸', '🌺', '🌼', '🌻', '💐', '🌷'];
+        const flower = document.createElement('div');
+        flower.className = 'flower';
+        flower.textContent = flowers[Math.floor(Math.random() * flowers.length)];
+        flower.style.left = Math.random() * 100 + '%';
+        flower.style.animationDuration = (Math.random() * 3 + 5) + 's';
+        flower.style.animationDelay = Math.random() * 2 + 's';
+        document.getElementById('cover-page').appendChild(flower);
+        
+        setTimeout(() => flower.remove(), 8000);
+    }
+    
+    setInterval(createFloatingFlower, 300);
+
+    // Fireworks Effect
+    function createFirework(x, y) {
+        const colors = ['#FFD700', '#FFA500', '#FF6347', '#FF69B4', '#FFB6C1'];
+        for (let i = 0; i < 30; i++) {
+            const particle = document.createElement('div');
+            particle.className = 'firework-particle';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
+            particle.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            
+            document.body.appendChild(particle);
+            
+            const angle = (Math.PI * 2 * i) / 30;
+            const velocity = 5 + Math.random() * 5;
+            let px = x, py = y;
+            let vx = Math.cos(angle) * velocity;
+            let vy = Math.sin(angle) * velocity;
+            
+            const interval = setInterval(() => {
+                px += vx;
+                py += vy;
+                vy += 0.2; // gravity
+                particle.style.left = px + 'px';
+                particle.style.top = py + 'px';
+                particle.style.opacity = particle.style.opacity - 0.02;
+                
+                if (particle.style.opacity <= 0) {
+                    clearInterval(interval);
+                    particle.remove();
+                }
+            }, 30);
+        }
+    }
+
+    // Countdown Timer
+    function updateCountdown() {
+        const weddingDate = new Date('2026-01-05T00:00:00').getTime();
+        const now = new Date().getTime();
+        const difference = weddingDate - now;
+
+        if (difference > 0) {
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
+        }
+    }
+    
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+
+    // Music Toggle
+    let isPlaying = false;
+    function toggleMusic() {
+        const audio = document.getElementById('background-music');
+        const btn = document.getElementById('music-toggle');
+        
+        if (isPlaying) {
+            audio.pause();
+            btn.textContent = '🔇';
+            isPlaying = false;
+        } else {
+            audio.play();
+            btn.textContent = '🎵';
+            isPlaying = true;
+        }
+    }
+
+    // RSVP Function
+    function showRSVP() {
+        const phone = prompt('कृपया अपना नाम दर्ज करें:');
+        if (phone) {
+            alert('धन्यवाद! ' + phone + '\n\nआपकी RSVP दर्ज की गई है। हम आपकी उपस्थिति के लिए बेसब्री से इंतजार कर रहे हैं। 🎉');
+            // यहाँ आप डेटा किसी सर्वर पर भेज सकते हैं
+        }
+    }
+
+    // Main Function
     function openInvitation() {
         var cover = document.getElementById('cover-page');
         var welcome = document.getElementById('welcome-page');
@@ -262,11 +451,25 @@
         cover.style.display = 'none';
         welcome.style.display = 'flex';
         
+        // Create Fireworks
+        for (let i = 0; i < 5; i++) {
+            setTimeout(() => {
+                createFirework(window.innerWidth / 2 + (Math.random() - 0.5) * 200, 
+                              window.innerHeight / 2 + (Math.random() - 0.5) * 200);
+            }, i * 100);
+        }
+        
         // Step 2: After 5 seconds, hide welcome and show main card
         setTimeout(function() {
             welcome.style.display = 'none';
             mainCard.style.display = 'flex';
             window.scrollTo(0, 0);
+            
+            // Auto play music
+            const audio = document.getElementById('background-music');
+            audio.play().catch(() => {
+                // Browser prevented auto-play
+            });
         }, 5000);
     }
 </script>
